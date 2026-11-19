@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>この学校の進学について | TraceCore</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            background-color: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family:
+                "Noto Sans JP",
+                "Yu Gothic",
+                "Hiragino Kaku Gothic ProN",
+                Meiryo,
+                sans-serif;
+            color: #333;
+            background-color: #ffffff;
+            line-height: 1.8;
+        }
+
+
+        .site-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e9ec;
+        }
+
+        .header-inner {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 22px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #174f72;
+        }
+
+        .logo-main {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo-sub {
+            display: block;
+            font-size: 11px;
+            color: #777;
+            margin-top: -3px;
+            letter-spacing: 1px;
+        }
+
+
+
+        .navbar {
+            background-color: #174f72;
+        }
+
+        .nav-inner {
+            max-width: 1150px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 14px 20px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #286b91;
+        }
+
+
+        .hero {
+            background-color: #eef5f8;
+            border-bottom: 1px solid #dfe8ed;
+            padding: 65px 20px 60px;
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero-label {
+            color: #28749b;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            color: #173f58;
+            font-size: 42px;
+            margin: 0 0 15px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .hero p {
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+
+        .contents {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 75px 25px 90px;
+        }
+
+
+
+        .section-title {
+            margin-bottom: 35px;
+        }
+
+        .section-label {
+            color: #28749b;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        .section-title h2 {
+            color: #173f58;
+            font-size: 30px;
+            margin: 0;
+            position: relative;
+            padding-bottom: 14px;
+        }
+
+        .section-title h2::after {
+            content: "";
+            display: block;
+            width: 45px;
+            height: 3px;
+            background-color: #28749b;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+
+        .intro {
+            border: 1px solid #dfe6ea;
+            background-color: #ffffff;
+            padding: 35px 40px;
+            margin-bottom: 65px;
+        }
+
+        .intro h3 {
+            color: #174f72;
+            font-size: 22px;
+            margin: 0 0 15px;
+        }
+
+        .intro p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 2;
+            color: #555;
+        }
+
+
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #dfe6ea;
+            transition:
+                transform 0.3s,
+                box-shadow 0.3s,
+                border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #b9d2df;
+            box-shadow: 0 10px 25px rgba(23, 79, 114, 0.10);
+        }
+
+        .card-inner {
+            padding: 30px;
+        }
+
+        .card-number {
+            color: #28749b;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .card h3 {
+            color: #173f58;
+            font-size: 22px;
+            margin: 0 0 15px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.9;
+            margin: 0;
+        }
+
+        .card-link {
+            display: block;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e9ec;
+
+            color: #28749b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .card-link:hover {
+            color: #174f72;
+        }
+
+
+
+        .bottom-message {
+            background-color: #174f72;
+            color: #ffffff;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .bottom-message h2 {
+            font-size: 27px;
+            margin: 0 0 10px;
+        }
+
+        .bottom-message p {
+            margin: 0;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+
+        footer {
+            background-color: #123c55;
+            color: #ffffff;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        footer .footer-logo {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        footer p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            opacity: 0.75;
+        }
+
+
+
+        @media (max-width: 700px) {
+
+            .header-inner {
+                padding: 18px 20px;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .logo-main {
+                font-size: 25px;
+            }
+
+            .navbar a {
+                font-size: 13px;
+                padding: 11px 10px;
+            }
+
+            .hero {
+                padding: 45px 20px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .contents {
+                padding: 55px 20px 70px;
+            }
+
+            .section-title h2 {
+                font-size: 25px;
+            }
+
+            .intro {
+                padding: 25px;
+                margin-bottom: 50px;
+            }
+
+            .intro h3 {
+                font-size: 20px;
+            }
+
+            .intro p {
+                font-size: 15px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .card-inner {
+                padding: 25px;
+            }
+
+            .card h3 {
+                font-size: 20px;
+            }
+
+            .bottom-message {
+                padding: 45px 20px;
+            }
+
+            .bottom-message h2 {
+                font-size: 23px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+
+                <span class="logo-main">
+                    TraceCore
+                </span>
+
+                <span class="logo-sub">
+                    南陽生のための学校情報サイト
+                </span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <nav class="navbar">
+
+        <div class="nav-inner">
+
+            <a href="index.html">
+                ホーム
+            </a>
+
+            <a href="授業内容.html">
+                授業について
+            </a>
+
+            <a href="この学校の進学について.html">
+                進学について
+            </a>
+
+            <a href="進路に影響する行為.html">
+                進路に影響する行為
+            </a>
+
+            <a href="進路実績.html">
+                進路実績
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <section class="hero">
+
+        <div class="hero-inner">
+
+            <div class="hero-label">
+                ADVANCEMENT
+            </div>
+
+            <h1>
+                この学校の進学について
+            </h1>
+
+            <p>
+                進学や卒業後の進路について紹介します。
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <main class="contents">
+
+
+
+        <section>
+
+            <div class="section-title">
+
+                <div class="section-label">
+                    ABOUT ADVANCEMENT
+                </div>
+
+                <h2>
+                    進学について
+                </h2>
+
+            </div>
+
+
+            <div class="intro">
+
+                <h3>
+                    卒業後の進路を考える
+                </h3>
+
+                <p>
+                    この学校では、卒業後の進学に向けて、
+                    さまざまな進路を選択することができます。
+                    自分の興味や将来の目標に合わせて、
+                    進学先を考えることができます。
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section>
+
+            <div class="section-title">
+
+                <div class="section-label">
+                    INFORMATION
+                </div>
+
+                <h2>
+                    進学・進路について
+                </h2>
+
+            </div>
+
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <div class="card-inner">
+
+                        <div class="card-number">
+                            ADVANCEMENT 01
+                        </div>
+
+                        <h3>
+                            大学への進学
+                        </h3>
+
+                        <p>
+                            大学への進学を目指す生徒に向けた
+                            学習について紹介します。
+                        </p>
+
+                        <a href="#" class="card-link">
+                            詳しく見る →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <div class="card-inner">
+
+                        <div class="card-number">
+                            ADVANCEMENT 02
+                        </div>
+
+                        <h3>
+                            専門学校への進学
+                        </h3>
+
+                        <p>
+                            専門的な知識や技術を身につけるための
+                            進学について紹介します。
+                        </p>
+
+                        <a href="#" class="card-link">
+                            詳しく見る →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-inner">
+
+                        <div class="card-number">
+                            ADVANCEMENT 03
+                        </div>
+
+                        <h3>
+                            進学に向けたサポート
+                        </h3>
+
+                        <p>
+                            進路選択や進学に向けた学校での
+                            サポートについて紹介します。
+                        </p>
+
+                        <a href="#" class="card-link">
+                            詳しく見る →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-inner">
+
+                        <div class="card-number">
+                            ADVANCEMENT 04
+                        </div>
+
+                        <h3>
+                            卒業後の進路
+                        </h3>
+
+                        <p>
+                            卒業後にどのような進路を選択できるのかを
+                            紹介します。
+                        </p>
+
+                        <a href="#" class="card-link">
+                            詳しく見る →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <section class="bottom-message">
+
+        <h2>
+            自分の未来につながる進路を考えよう
+        </h2>
+
+        <p>
+            自分の興味や目標に合わせて、卒業後の進路を考えてみましょう。
+        </p>
+
+    </section>
+
+
+    <footer>
+
+        <div class="footer-logo">
+            TraceCore
+        </div>
+
+        <p>
+            南陽生のための学校情報サイト&copy;2026
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
