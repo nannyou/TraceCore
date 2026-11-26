@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TraceCore</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            background-color: white;
+        }
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            color: #222;
+            background-color: white;
+        }
+        .header {
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+        }
+        .header-top {
+            max-width: 1200px;
+            margin: 0 auto;
+
+            padding: 22px 30px;
+
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            color: #174f72;
+
+            font-size: 28px;
+            font-weight: bold;
+
+            letter-spacing: 2px;
+        }
+        .logo span {
+            display: block;
+
+            margin-top: 5px;
+
+            color: #777;
+
+            font-size: 12px;
+            font-weight: normal;
+
+            letter-spacing: 1px;
+        }
+        .navbar {
+            background-color: #174f72;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            flex-wrap: wrap;
+        }
+        .navbar a {
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            padding: 16px 25px;
+
+            transition: 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #286b91;
+        }
+        .main-visual {
+            background-color: #eef5f8;
+
+            padding: 85px 20px 80px;
+
+            text-align: center;
+        }
+        .main-visual .english {
+            color: #287294;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 15px;
+        }
+        .main-visual h1 {
+            color: #174f72;
+
+            font-size: 48px;
+
+            letter-spacing: 3px;
+
+            margin: 0 0 20px;
+        }
+        .main-visual p {
+            color: #555;
+
+            font-size: 17px;
+
+            line-height: 2;
+
+            margin: 0;
+        }
+        .contents {
+            max-width: 1150px;
+
+            margin: 0 auto;
+
+            padding: 80px 25px;
+        }
+        .section-title {
+            margin-bottom: 45px;
+        }
+        .section-title .english {
+            color: #287294;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+        }
+        .section-title h2 {
+            font-size: 34px;
+
+            margin: 8px 0 0;
+
+            color: #222;
+        }
+        .section-title h2::after {
+            content: "";
+
+            display: block;
+
+            width: 55px;
+            height: 4px;
+
+            background-color: #287294;
+
+            margin-top: 16px;
+        }
+        .description {
+            font-size: 17px;
+
+            line-height: 2;
+
+            color: #555;
+
+            max-width: 850px;
+
+            margin-bottom: 60px;
+        }
+        .contents-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 30px;
+        }
+        .box {
+            background-color: white;
+
+            border: 1px solid #ddd;
+
+            transition: 0.3s;
+
+            overflow: hidden;
+        }
+        .box:hover {
+            transform: translateY(-6px);
+
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+        .box-title {
+            padding: 25px 28px 20px;
+        }
+        .box-number {
+            color: #287294;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 8px;
+        }
+        .box h3 {
+            color: #174f72;
+
+            font-size: 23px;
+
+            margin: 0;
+        }
+        .box-image {
+            display: block;
+
+            overflow: hidden;
+        }
+        .box img {
+            width: 100%;
+
+            height: 280px;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: 0.4s;
+        }
+        .box:hover img {
+            transform: scale(1.04);
+        }
+        .box-link {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 28px;
+
+            color: #287294;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            border-top: 1px solid #eee;
+        }
+        .arrow {
+            font-size: 20px;
+        }
+        .message {
+            margin-top: 90px;
+
+            background-color: #174f72;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 55px 20px;
+        }
+        .message h2 {
+            font-size: 28px;
+
+            margin: 0 0 15px;
+        }
+        .message p {
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            margin: 0;
+        }
+        footer {
+            background-color: #123c55;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+            font-size: 13px;
+        }
+        @media (max-width: 700px) {
+            .header-top {
+                padding: 18px 20px;
+            }
+            .logo {
+                font-size: 23px;
+            }
+            .navbar a {
+                font-size: 13px;
+
+                padding: 12px 10px;
+            }
+            .main-visual {
+                padding: 60px 20px;
+            }
+            .main-visual h1 {
+                font-size: 36px;
+            }
+            .main-visual p {
+                font-size: 15px;
+            }
+            .contents {
+                padding: 55px 18px;
+            }
+            .section-title h2 {
+                font-size: 28px;
+            }
+            .description {
+                font-size: 16px;
+            }
+            .contents-grid {
+                grid-template-columns: 1fr;
+
+                gap: 25px;
+            }
+            .box img {
+                height: 230px;
+            }
+            .message {
+                margin-top: 60px;
+
+                padding: 45px 20px;
+            }
+            .message h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="logo">
+                TraceCore
+                <span>
+                    南陽生のための学校情報サイト
+                </span>
+            </div>
+        </div>
+        <nav class="navbar">
+            <a href="index.html">
+                ホーム
+            </a>
+            <a href="授業内容.html">
+                授業について
+            </a>
+            <a href="この学校の進学について.html">
+                進学について
+            </a>
+            <a href="進路に影響する行為.html">
+                進路に影響する行為
+            </a>
+            <a href="進路実績.html">
+                進路実績
+            </a>
+        </nav>
+    </header>
+    <section class="main-visual">
+        <div class="english">
+            TRACECORE
+        </div>
+        <h1>
+            南陽生のための学校情報
+        </h1>
+        <p>
+            当サイトでは、南陽生に向けた授業内容や
+            <br>
+            進学・進路についての情報をまとめています。
+        </p>
+    </section>
+    <main class="contents">
+        <div class="section-title">
+            <div class="english">
+                INFORMATION
+            </div>
+            <h2>
+                学校について知る
+            </h2>
+        </div>
+        <p class="description">
+            南陽高校での授業や進路について、
+            知りたい項目を選択してください。
+            それぞれのページから詳しい情報を見ることができます。
+        </p>
+        <div class="contents-grid">
+            <div class="box">
+                <div class="box-title">
+                    <div class="box-number">
+                        INFORMATION 01
+                    </div>
+                    <h3>
+                        系列ごとの授業について
+                    </h3>
+                </div>
+                <a
+                    href="授業内容.html"
+                    class="box-image"
+                >
+                    <img
+                        src="https://ikinokoru.com/wp-content/uploads/2024/01/8.png"
+                        alt="系列ごとの授業"
+                    >
+                </a>
+                <a
+                    href="授業内容.html"
+                    class="box-link"
+                >
+                    詳しく見る
+                    <span class="arrow">
+                        →
+                    </span>
+                </a>
+            </div>
+            <div class="box">
+                <div class="box-title">
+                    <div class="box-number">
+                        INFORMATION 02
+                    </div>
+                    <h3>
+                        この学校の進学について
+                    </h3>
+                </div>
+                <a
+                    href="この学校の進学について.html"
+                    class="box-image"
+                >
+                    <img
+                        src="https://t4.ftcdn.net/jpg/04/81/55/33/360_F_481553333_6rJYt9QRF9slq0h39wDc1TWooHiRto7m.jpg"
+                        alt="進学について"
+                    >
+                </a>
+                <a
+                    href="この学校の進学について.html"
+                    class="box-link"
+                >
+                    詳しく見る
+                    <span class="arrow">
+                        →
+                    </span>
+                </a>
+            </div>
+            <div class="box">
+                <div class="box-title">
+                    <div class="box-number">
+                        INFORMATION 03
+                    </div>
+                    <h3>
+                        進路に影響する行為
+                    </h3>
+                </div>
+                <a
+                    href="進路に影響する行為.html"
+                    class="box-image"
+                >
+                    <img
+                        src="https://p2.bahamut.com.tw/B/2KU/53/88975ee82c553d40fb43eb3aca1ogtd5.JPG"
+                        alt="進路に影響する行為"
+                    >
+                </a>
+                <a
+                    href="進路に影響する行為.html"
+                    class="box-link"
+                >
+                    詳しく見る
+                    <span class="arrow">
+                        →
+                    </span>
+                </a>
+            </div>
+            <div class="box">
+                <div class="box-title">
+                    <div class="box-number">
+                        INFORMATION 04
+                    </div>
+                    <h3>
+                        進路実績
+                    </h3>
+                </div>
+                <a
+                    href="進路実績.html"
+                    class="box-image"
+                >
+                    <img
+                        src="https://kizuki.or.jp/wp/wp-content/uploads/2024/02/81382_03.jpg"
+                        alt="進路実績"
+                    >
+                </a>
+                <a
+                    href="進路実績.html"
+                    class="box-link"
+                >
+                    詳しく見る
+                    <span class="arrow">
+                        →
+                    </span>
+                </a>
+            </div>
+        </div>
+    </main>
+    <section class="message">
+        <h2>
+            自分の未来を考える
+        </h2>
+        <p>
+            授業・進学・進路について知り、
+            <br>
+            自分自身の将来について考えてみましょう。
+        </p>
+    </section>
+    <footer>
+        TraceCore
+        <br>
+        南陽生のための学校情報サイト&copy;2026
+    </footer>
+</body>
+</html>
